@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseConnection {
-    private static final String URL = "URL";
-    private static final String USER = "USER";
-    private static final String PASSWORD = "PASSWORD";
+    private static final String URL = "url";
+    private static final String USER = "user";
+    private static final String PASSWORD = "password";
     List<String> results = new ArrayList<>();
 
     public static Connection getConnection() throws SQLException {

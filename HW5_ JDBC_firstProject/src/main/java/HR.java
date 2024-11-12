@@ -1,23 +1,21 @@
 import java.sql.*;
+import java.sql.Date;
 
 public class HR {
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/OnlyMyShems"; // Замените на свой URL к базе данных
-        String user = "root"; // Замените на свое имя пользователя
-        String password = "12345678"; // Замените на свой пароль
+        String url = "jdbc:mysql://localhost:3306/by_ksiprus"; // Replace with your database URL
+        String user = "root"; // Replace with your username
+        String password = "12341234"; // Replace with your password
         return DriverManager.getConnection(url, user, password);
     }
 
     public void addEmployee(String firstName, String lastName, String email, String department, double salary, Date hireDate) {
-        // Проверка на существование
         if (isEmailExists(email)) {
             System.out.println("Сотрудник с таким email уже существует: " + email);
-            return; // Прерывание метода
+            return;
         }
-
-        String sql = "INSERT INTO employees (first_name, last_name, email, department, salary, hire_date) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.INSERT_EMPLOYEE)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, email);
@@ -32,24 +30,22 @@ public class HR {
     }
 
     private boolean isEmailExists(String email) {
-        String sql = "SELECT COUNT(*) FROM employees WHERE email = ?";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.SELECT_EMAIL_COUNT)) {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) > 0; // Если найден хотя бы один, то email существует
+                return rs.getInt(1) > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // Email не найден
+        return false;
     }
 
     public void updateEmployee(int id, String firstName, String lastName, String email, String department, double salary, Date hireDate) {
-        String sql = "UPDATE employees SET first_name = ?, last_name = ?, email = ?, department = ?, salary = ?, hire_date = ? WHERE id = ?";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.UPDATE_EMPLOYEE)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, email);
@@ -69,9 +65,8 @@ public class HR {
     }
 
     public void deleteEmployee(int id) {
-        String sql = "DELETE FROM employees WHERE id = ?";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.DELETE_EMPLOYEE)) {
             pstmt.setInt(1, id);
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -85,9 +80,8 @@ public class HR {
     }
 
     public void getAllEmployees() {
-        String sql = "SELECT * FROM employees";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.SELECT_ALL_EMPLOYEES);
              ResultSet rs = pstmt.executeQuery()) {
             System.out.println("Все сотрудники:");
             displayResultSet(rs);
@@ -97,9 +91,8 @@ public class HR {
     }
 
     public void findEmployeesByDepartment(String department) {
-        String sql = "SELECT * FROM employees WHERE department = ?";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.SELECT_EMPLOYEES_BY_DEPARTMENT)) {
             pstmt.setString(1, department);
             try (ResultSet rs = pstmt.executeQuery()) {
                 System.out.println("Сотрудники в отделе " + department + ":");
@@ -111,9 +104,8 @@ public class HR {
     }
 
     public void findEmployeesWithSalaryAbove(double salaryThreshold) {
-        String sql = "SELECT * FROM employees WHERE salary > ?";
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(SqlQueries.SELECT_EMPLOYEES_WITH_SALARY_ABOVE)) {
             pstmt.setDouble(1, salaryThreshold);
             try (ResultSet rs = pstmt.executeQuery()) {
                 System.out.println("Сотрудники с зарплатой выше " + salaryThreshold + ":");
