@@ -1,0 +1,18 @@
+INSERT INTO shelter (shelter_id, shelter_name, location)
+VALUES (1, '9 Жизней', 'Минск'),
+       (2, 'Домик спасенных душ', 'Витебск'),
+       (3, 'Эгида', 'Минск'),
+       (4, 'Доброта', 'Брест');
+
+INSERT INTO animals (animal_id, animal_name, species, shelter_id)
+VALUES (1, 'Бим', 'собака', 1),
+       (2, 'Маркиз', 'кот', 4),
+       (3, 'Чарли', 'собака', 2),
+       (4, 'Макс', 'кролик', NULL), -- Животное без приюта
+       (5, 'Белла', 'собака', 3),
+       (6, 'Гоша', 'попугай',NULL);
+
+INSERT INTO adoptions (adoption_id, animal_id, adopter_name, adoption_date)
+VALUES (1, 1, 'Петя', '2024-01-15'),
+       (2, 6, 'Маша', '2024-02-20'),
+       (3, 5,'Вася','2024-02-12');

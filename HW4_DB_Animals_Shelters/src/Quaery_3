@@ -1,0 +1,3 @@
+SELECT s.shelter_name, a.animal_name
+FROM shelter s
+         LEFT JOIN animals a ON s.shelter_id = a.shelter_id;

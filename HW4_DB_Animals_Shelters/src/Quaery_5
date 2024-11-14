@@ -1,0 +1,4 @@
+SELECT s.shelter_name, COUNT(a.animal_id) AS animal_count
+FROM shelter s
+         LEFT JOIN animals a ON s.shelter_id = a.shelter_id
+GROUP BY s.shelter_name;

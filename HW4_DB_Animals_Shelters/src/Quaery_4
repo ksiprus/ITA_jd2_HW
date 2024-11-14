@@ -1,0 +1,4 @@
+SELECT a.animal_id, a.animal_name,
+       CASE WHEN ad.adoption_id IS NOT NULL THEN 'Yes' ELSE 'No' END AS adopted
+FROM animals a
+         LEFT JOIN adoptions ad ON a.animal_id = ad.animal_id;

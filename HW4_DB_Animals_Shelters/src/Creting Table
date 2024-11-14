@@ -1,0 +1,25 @@
+CREATE DATABASE Shelter_For_Animals;
+CREATE TABLE Shelter_For_Animals.shelter
+(
+    shelter_id   INT PRIMARY KEY,
+    shelter_name VARCHAR(100) NOT NULL,
+    location     VARCHAR(255)
+);
+
+CREATE TABLE Shelter_For_Animals.Animals
+(
+    animal_id   INT PRIMARY KEY,
+    animal_name VARCHAR(100) NOT NULL,
+    species     VARCHAR(50),
+    shelter_id  INT,
+    CONSTRAINT fk_shelter FOREIGN KEY (shelter_id) REFERENCES shelter (shelter_id)
+);
+
+CREATE TABLE Shelter_For_Animals.adoptions
+(
+    adoption_id   INT PRIMARY KEY,
+    animal_id     INT,
+    adopter_name  VARCHAR(100),
+    adoption_date DATE,
+    CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES animals (animal_id)
+);
