@@ -1,0 +1,17 @@
+create
+database People;
+create table PEOPLE.Person
+(
+    id             INT      not null auto_increment,
+    age            int      not null,
+    salary DOUBLE NULL,
+    passport       CHAR(10) not null,
+    address        VARCHAR(200) null,
+    dateOfBirth    DATE     not null,
+    dateTimeCreate Datetime,
+    timeLunch      TIME null,
+    letter         text null,
+    PRIMARY KEY (id),
+    UNIQUE INDEX id_UNIQUE (id ASC ),
+    UNIQUE INDEX passport_UNIQUE (passport ASC )
+);

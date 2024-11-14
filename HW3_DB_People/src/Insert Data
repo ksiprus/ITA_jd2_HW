@@ -1,0 +1,21 @@
+INSERT INTO People.Person
+(age, salary, passport, address, dateOfBirth, dateTimeCreate, timeLunch, letter)
+VALUES (35, 1500.34, 'BM234543', 'Гомель',
+        '1988-11-21', sysdate(),'12:00:00',
+        'Характеристика сотрудника');
+
+INSERT INTO People.Person(age, salary, passport, address, dateOfBirth, dateTimeCreate, timeLunch, letter)
+VALUES (21,1764.45, 'BM768546','Минск','2003-06-23',SYSDATE(),
+        '11:45:00', 'Характеристика сотрудника');
+
+INSERT INTO People.Person(age, salary, passport, address, dateOfBirth, dateTimeCreate, timeLunch, letter)
+VALUES (18,1456.78,'BC345980','Брест','2006-09-30',SYSDATE(),
+        '10:00:00','Характеристика сотрудника');
+
+INSERT INTO People.Person (age, salary, passport, address, dateOfBirth, dateTimeCreate, timeLunch, letter)
+VALUES (54 ,3456.56,'BN545467','Лепель','1970-04-25',sysdate(),
+        '13:00:00','Характеристика сотрудника');
+
+INSERT INTO People.Person (age, salary, passport, address, dateOfBirth, dateTimeCreate, timeLunch, letter)
+VALUES  (25,1200.00,'MK567890','Полоцк','1999-12-31',sysdate(),
+         '11:45:00','Характеристика сотрудника');
