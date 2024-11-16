@@ -4,13 +4,13 @@ package ksiprus.DTO;
  * Поля соответствуют колонкам в таблице и включают следующие атрибуты.
  */
 
-public class AdressDTO {
+public class AddressDTO {
     private int id;
     private String street;
     private int houseNumber;
 
 
-    public AdressDTO(int id, String street, int houseNumber) {
+    public AddressDTO(int id, String street, int houseNumber) {
         this.id = id;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -42,7 +42,7 @@ public class AdressDTO {
 
     @Override
     public String toString() {
-        return "AdressDTO{" +
+        return "AddressDTO{" +
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", houseNumber=" + houseNumber +
