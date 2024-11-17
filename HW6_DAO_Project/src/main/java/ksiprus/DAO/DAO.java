@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.io.Serializable;
 import java.util.List;
 
-/*
+/**
 * Общий интерфейс содержащий методы для доступа к базе данных
 * Вместо параметра (T) устанавливается объект типа DTO, соответствующей таблицы
 * */
